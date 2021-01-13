@@ -1,0 +1,173 @@
+:root {
+  /* 提前定义一些变量 */
+  /* 背景色 */
+  --background-color: #000;
+  /* 颜色：彩灯1 */
+  --color1: rgba(255, 217, 0);
+  --color1-1: rgba(255, 217, 0, 0.4);
+  --color1-2: rgba(255, 217, 0, 0.2);
+  /* 颜色：彩灯2 */
+  --color2: rgba(248, 4, 90);
+  --color2-1: rgba(248, 4, 90, 0.4);
+  --color2-2: rgba(248, 4, 90, 0.2);
+  /* 颜色：彩灯3 */
+  --color3: rgba(41, 157, 245);
+  --color3-1: rgba(9, 132, 227, 0.4);
+  --color3-2: rgba(9, 132, 227, 0.2);
+  /* 颜色：彩灯4 */
+  --color4: rgba(25, 216, 50);
+  --color4-1: rgba(25, 216, 50, 0.4);
+  --color4-2: rgba(25, 216, 50, 0.2);
+  /* 尺寸与间距 */
+  --width: 12px;
+  --height: 28px;
+  --spacing: 40px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 14px;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--background-color);
+  font-family: "Montserrat", sans-serif, Arial, "Microsoft Yahei";
+}
+.channel {
+  position: absolute;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -200px);
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+}
+/* 彩灯背景 */
+.light {
+  /* 宽度为100%屏幕宽度 */
+  width: 100vw;
+  /* 高度为彩灯的2x */
+  height: calc(var(--height) * 2);
+  /* background-color: #555; */
+  list-style: none;
+  padding-top: 20px;
+  /* 稍后用inline-block 这里采用不换行 */
+  white-space: nowrap;
+  /* 彩灯多放，超出的部分隐藏 */
+  overflow: hidden;
+}
+.light li {
+  position: relative;
+  display: inline-block;
+  margin-right: var(--spacing);
+  width: var(--width);
+  height: var(--height);
+  background-color: var(--color1);
+  border-radius: 50%;
+  /* 增加默认动画 */
+  animation: flash-1 2s ease infinite;
+  /* animation: flash-2 2s ease infinite; */
+  /* animation: flash-3 2s ease infinite; */
+  /* animation: flash-4 2s ease infinite; */
+}
+/* 第1-3-4-5-7-9元素应用动画2 */
+/* 调整动画执行时间产生差异 */
+.light li:nth-child(2n + 1) {
+  animation: flash-2 0.5s ease infinite;
+}
+/* 第2-6-10-14元素应用动画3 */
+.light li:nth-child(4n + 2) {
+  animation: flash-3 1.2s ease infinite;
+}
+/* 第3-8-13-18元素应用动画4 */
+.light li:nth-child(5n + 3) {
+  animation: flash-4 0.8s ease infinite;
+}
+/* 让灯光变得更加随机一点 */
+.light li:nth-child(odd) {
+  animation-duration: 1.7s;
+}
+.light li:nth-child(3n + 1) {
+  animation-duration: 1.3s;
+}
+/* 灯座 */
+.light li::before {
+  position: absolute;
+  content: "";
+  background-color: #333;
+  width: 100%;
+  height: 25%;
+  border-radius: 5px;
+}
+/* 电线 */
+.light li::after {
+  position: absolute;
+  content: "";
+  /* background-color: blue; */
+  /* 宽度等于半个灯的宽度加间距 */
+  width: calc(var(--width) + var(--spacing));
+  height: 60%;
+  /* 左偏移为半个灯的宽度 */
+  left: calc(var(--width) / 2);
+  /* 利用下边线＋圆角实现弧度线 */
+  border-bottom: 2px solid #333;
+  border-radius: 50%;
+  /* 向上位移50% */
+  transform: translateY(-50%);
+}
+/* 最后一个灯没有电线 */
+.light li:last-child::after {
+  content: none;
+}
+/* 定义4个动画  实现闪光*/
+/* 使用帧动画，使用阴影实现发黄效果，并增加透明度的变化 */
+@keyframes flash-1 {
+  0%,
+  100% {
+    background-color: var(--color1);
+    box-shadow: 0 5px 24px 3px var(--color1);
+  }
+  50% {
+    background-color: var(--color1-1);
+    box-shadow: 0 5px 24px 3px var(--color1-2);
+  }
+}
+@keyframes flash-2 {
+  0%,
+  100% {
+    background-color: var(--color2);
+    box-shadow: 0 5px 24px 3px var(--color2);
+  }
+  50% {
+    background-color: var(--color2-1);
+    box-shadow: 0 5px 24px 3px var(--color2-2);
+  }
+}
+
+@keyframes flash-3 {
+  0%,
+  100% {
+    background-color: var(--color3);
+    box-shadow: 0 5px 24px 3px var(--color3);
+  }
+  50% {
+    background-color: var(--color3-1);
+    box-shadow: 0 5px 24px 3px var(--color3-2);
+  }
+}
+@keyframes flash-4 {
+  0%,
+  100% {
+    background-color: var(--color4);
+    box-shadow: 0 5px 24px 3px var(--color4);
+  }
+  50% {
+    background-color: var(--color4-1);
+    box-shadow: 0 5px 24px 3px var(--color4-2);
+  }
+}

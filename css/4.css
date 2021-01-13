@@ -1,0 +1,67 @@
+/* 导入一个字体 */
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
+
+:root {
+  --background-color: #6fbfd9;
+  --border-color: #7591ad;
+  --text-color: #34495e;
+  --color1: #ec3e27;
+  --color2: #fd79a8;
+  --color3: #0984e3;
+  --color4: #00b894;
+  --color5: #fdcb6e;
+  --color6: #e056fd;
+  --color7: #f97f51;
+  --color8: #bdc581;
+
+  --text: #fedc0c;
+  --bg: #6fbfd9;
+
+  --easing: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+.container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Luckiest Guy";
+  background-color: var(--bg);
+
+  /* 通过径向渐变形成两个圆点 */
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 20%, transparent 25%),
+    radial-gradient(rgba(0, 0, 0, 0.1) 20%, transparent 25%);
+  /* 分别控制两个圆点的位置 */
+  background-position: 0 0, 20px 20px;
+  /* 背景的大小 */
+  background-size: 40px 40px;
+  display: flex;
+  /* 居中向上对齐 */
+  justify-content: center;
+  align-items: flex-start;
+}
+h1 {
+  position: absolute;
+  top: 200px;
+  color: var(--text);
+  -webkit-text-stroke-color: #222;
+  -webkit-text-stroke-width: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 span {
+  position: absolute;
+  font-size: 50px;
+}
