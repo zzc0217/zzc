@@ -31,5 +31,20 @@
         <span style="--i: 10">l</span>
       </h2>
     </div>
+
+    <script>
+      //所有的span标签
+      let spans = document.getElementsByTagName("span");
+
+      // 页面加载时
+      window.addEventListener("load", () => {
+        // 循环所有的span
+        for (let index = 0; index < spans.length; index++) {
+          const element = spans[index];
+          // 增加in样式属性;
+          element.classList += " in";
+        }
+      });
+    </script>
   </body>
 </html>
